@@ -15,10 +15,15 @@ import { AgentBuilderToolCreatePage } from './pages/tool_create';
 import { AgentBuilderToolDetailsPage } from './pages/tool_details';
 import { AgentBuilderToolsPage } from './pages/tools';
 import { AgentBuilderBulkImportMcpToolsPage } from './pages/bulk_import_mcp_tools';
+import { AgentBuilderConnectorsPage } from './pages/connectors';
 
 export const AgentBuilderRoutes: React.FC<{}> = () => {
   return (
     <Routes>
+      <Route path="/connectors">
+        <AgentBuilderConnectorsPage />
+      </Route>
+
       <Route path="/conversations/:conversationId">
         <AgentBuilderConversationsPage />
       </Route>

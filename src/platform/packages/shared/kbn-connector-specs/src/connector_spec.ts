@@ -263,6 +263,11 @@ export interface ConnectorSpec {
   test?: ConnectorTest;
 
   transformations?: Transformations;
+
+  // When true, indicates this connector has workflow YAMLs in a `workflows/`
+  // subdirectory next to its spec file. Agent Builder will auto-create
+  // workflows and tools when a connector of this type is created.
+  agentBuilderWorkflows?: boolean;
 }
 
 // ============================================================================

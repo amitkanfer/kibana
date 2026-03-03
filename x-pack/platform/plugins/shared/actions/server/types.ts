@@ -182,6 +182,19 @@ export interface PostDeleteConnectorHookParams<
   services: HookServices;
 }
 
+// Cross-plugin lifecycle listener for connector create/delete events.
+// Registered by external plugins (e.g., Agent Builder) via the actions setup contract.
+export interface ConnectorLifecycleListener {
+  // Which connector types this listener applies to, or '*' for all types
+  connectorTypes: string[] | '*';
+  // Called after a connector is successfully created or updated
+  onPostSave?: (params: PostSaveConnectorHookParams & { connectorType: string }) => Promise<void>;
+  // Called after a connector is deleted
+  onPostDelete?: (
+    params: PostDeleteConnectorHookParams & { connectorType: string }
+  ) => Promise<void>;
+}
+
 export type ActionType<
   Config extends ActionTypeConfig = ActionTypeConfig,
   Secrets extends ActionTypeSecrets = ActionTypeSecrets,

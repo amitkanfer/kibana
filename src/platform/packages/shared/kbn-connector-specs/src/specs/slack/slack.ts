@@ -815,4 +815,6 @@ export const Slack: ConnectorSpec = {
       }
     },
   },
+
+  agentBuilderWorkflows: true,
 };

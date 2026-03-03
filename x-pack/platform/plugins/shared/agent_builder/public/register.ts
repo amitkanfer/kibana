@@ -54,6 +54,13 @@ export const registerApp = ({
         path: '/agents',
         title: i18n.translate('xpack.agentBuilder.agents.title', { defaultMessage: 'Agents' }),
       },
+      {
+        id: 'connectors',
+        path: '/connectors',
+        title: i18n.translate('xpack.agentBuilder.connectors.title', {
+          defaultMessage: 'Connectors',
+        }),
+      },
     ],
     async mount({ element, history, onAppLeave }: AppMountParameters) {
       const { mountApp } = await import('./application');

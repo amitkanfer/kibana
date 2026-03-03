@@ -71,6 +71,9 @@ const fullscreenLabels = {
   tools: i18n.translate('xpack.agentBuilder.conversationActions.tools', {
     defaultMessage: 'View all tools',
   }),
+  connectors: i18n.translate('xpack.agentBuilder.conversationActions.connectors', {
+    defaultMessage: 'View all connectors',
+  }),
   sources: i18n.translate('xpack.agentBuilder.conversationActions.sources', {
     defaultMessage: 'View all sources',
   }),
@@ -224,6 +227,15 @@ export const MoreActionsButton: React.FC<MoreActionsButtonProps> = ({ onRenameCo
       data-test-subj="agentBuilderActionsTools"
     >
       {fullscreenLabels.tools}
+    </EuiContextMenuItem>,
+    <EuiContextMenuItem
+      key="connectors"
+      icon="plugs"
+      onClick={closePopover}
+      href={createAgentBuilderUrl(appPaths.connectors.list)}
+      data-test-subj="agentBuilderActionsConnectors"
+    >
+      {fullscreenLabels.connectors}
     </EuiContextMenuItem>,
     ...(isDataSourcesEnabled
       ? [

@@ -488,6 +488,7 @@ export class AssetManager {
     const resetIndex = `.entities.v1.reset.${definitionId}`;
     const updatesDataStream = `.entities.v1.updates.${definitionId}`;
     const enrichPolicyName = `entity_store_field_retention_${type}_${this.namespace}_v1.0.0`;
+    const v1EngineDescriptorId = `entity-engine-descriptor-${type}-${this.namespace}`;
 
     await Promise.all(
       transformIds.map((transformId) =>
@@ -548,6 +549,19 @@ export class AssetManager {
           }
           throw error;
         })
+      ),
+      this.tryAsBoolean(
+        this.savedObjectsClient
+          .delete('entity-engine-status', v1EngineDescriptorId)
+          .catch((error) => {
+            if (
+              SavedObjectsErrorHelpers.isNotFoundError(error) ||
+              SavedObjectsErrorHelpers.isForbiddenError(error)
+            ) {
+              return;
+            }
+            throw error;
+          })
       ),
     ]);
 
